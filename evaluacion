@@ -1,0 +1,418 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNWVOdROu+BNMe1189gRvE3",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/alyson0705/CURSO-FUNDAMENTOS-PYTHON1/blob/Rama-Solucion/evaluacion\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "\n",
+        "  Gestión de Inventario de Productos Descripción: Se debe desarrollar un sistema que administre un inventario compuesto por productos y sus cantidades. El programa presentará el listado inicial y resaltará aquellos artículos cuyo stock esté por debajo de un umbral definido. Luego, permitirá actualizar la cantidad de un producto específico, mostrando el inventario antes y después de la modificación."
+      ],
+      "metadata": {
+        "id": "IzZuo8cRJo-s"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "productos = [\"coca-cola\", \"sprite\", \"fanta\", \"kola-romana\", \"quatro\"]\n",
+        "cantidades =[20, 20, 10, 15, 20]\n",
+        "stock= 15\n",
+        "\n",
+        "for i in range(len(productos)):\n",
+        "  print(f\"{i + 1}. {productos[i]}: {cantidades[i]} \")\n",
+        "  if cantidades[i] < stock:\n",
+        "    print(\"Productos con bajo stock: \")\n",
+        "    print(f\"El producto {productos[i]} no tiene suficiente stock: {cantidades[i]} unidades\")\n",
+        "\n",
+        "\n",
+        "producto_seleccionado =int(input(\"Ingrese el número del producto que desea actualizar: \"))\n",
+        "nueva_cantidad = int(input(\"Ingrese la nueva cantidad: \"))\n",
+        "\n",
+        "cantidades[producto_seleccionado -1] = nueva_cantidad\n",
+        "\n",
+        "for i in range(len(productos)):\n",
+        "  print(f\"{i + 1}. {productos[i]}: {cantidades[i]} \")\n",
+        "  if cantidades[i] < stock:\n",
+        "    print(\"Productos con bajo stock: \")\n",
+        "    print(f\"El producto {productos[i]} no tiene suficiente stock: {cantidades[i]} unidades\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-c1oTQ_2J3Jk",
+        "outputId": "b029ccbf-4cf5-4403-fab9-fafd041cfe82"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "1. coca-cola: 20 \n",
+            "2. sprite: 20 \n",
+            "3. fanta: 10 \n",
+            "Productos con bajo stock: \n",
+            "El producto fanta no tiene suficiente stock: 10 unidades\n",
+            "4. kola-romana: 15 \n",
+            "5. quatro: 20 \n",
+            "Ingrese el número del producto que desea actualizar: 3\n",
+            "Ingrese la nueva cantidad: 20\n",
+            "1. coca-cola: 20 \n",
+            "2. sprite: 20 \n",
+            "3. fanta: 20 \n",
+            "4. kola-romana: 15 \n",
+            "5. quatro: 20 \n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Búsqueda de Palabras en un Texto Descripción: Crea una aplicación que solicite al usuario un párrafo y, a continuación, le permita buscar una palabra específica. El sistema debe contar cuántas veces aparece dicha palabra en el texto, mostrar las posiciones donde se encuentra (sin distinguir mayúsculas de minúsculas) y comunicar el resultado al usuario."
+      ],
+      "metadata": {
+        "id": "fmjgj_XdYLhm"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "parrafo_1 = input(\"ingrese el parrafo 1: \").lower()\n",
+        "\n",
+        "palabra_repetida = input(\"Ingrese la palabra que desea buscar: \")\n",
+        "numero_de_veces = parrafo_1.count(palabra_repetida)\n",
+        "print(f\"La palabra '{palabra_repetida}' aparece {numero_de_veces} veces en el párrafo.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_xo5Of1gYPvF",
+        "outputId": "847bac4d-186c-4e2f-cf9b-6743cd5bff78"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ingrese el parrafo 1: pobre angel\n",
+            "Ingrese la palabra que desea buscar: angel\n",
+            "La palabra 'angel' aparece 1 veces en el párrafo.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Conversión y Limpieza de Texto Descripción: Diseña una solución que pida al usuario una frase, la divida en palabras y elimine cualquier carácter no alfabético de cada una. Una vez procesada la información, la estructura resultante se transformará en una forma inmutable, y se presentará el contenido final al usuario de manera ordenada."
+      ],
+      "metadata": {
+        "id": "GLevIZ_sohIr"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "frase = input(\"Ingrese una frase: \")\n",
+        "\n",
+        "palabras_procesadas = tuple(\"\".join(c for c in palabra if c.isalpha()) for palabra in frase.split())\n",
+        "\n",
+        "palabras_ordenadas = tuple(sorted(palabras_procesadas))\n",
+        "\n",
+        "print(\"Palabras procesadas y ordenadas:\", palabras_ordenadas)\n",
+        "\n",
+        "frase_limpia = \"\"\n",
+        "\n",
+        "for caracter in frase:\n",
+        "    if caracter.isalpha() or caracter == \" \":\n",
+        "        frase_limpia += caracter\n",
+        "\n",
+        "print(\"Texto limpio:\", frase_limpia)a"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ZmxzNoyrpr2D",
+        "outputId": "62315b0a-47ef-45cc-b1fc-f04d540f1ca9"
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingrese una frase: jamaic\n",
+            "Palabras procesadas y ordenadas: ('jamaic',)\n",
+            "Texto limpio: jamaic\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Registro y Consulta de Calificaciones de Exámenes Descripción: Implementa un sistema que gestione un registro de estudiantes y sus calificaciones. El programa debe permitir agregar nuevos registros, listar todos los existentes y consultar la calificación de un estudiante introduciendo su nombre. Se espera que la información se actualice y se presente de forma clara en cada paso."
+      ],
+      "metadata": {
+        "id": "vQSu2ayXcaWm"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def mostrar_menu():\n",
+        "    print(\"\\n Menú:\")\n",
+        "    print(\"1. Agregar nuevo Estudiante\")\n",
+        "    print(\"2. Listar todos los Estudiantes\")\n",
+        "    print(\"3. Consultar calificación de un estudiante\")\n",
+        "    print(\"4. Actualizar calificación de un estudiante\")\n",
+        "    print(\"5. Eliminar un estudiante del registro\")\n",
+        "    print(\"6. Salir\")\n",
+        "\n",
+        "registros = {\n",
+        "    \"Sergio Prato\": 95,\n",
+        "    \"Chloe Sanchez\": 77,\n",
+        "    \"Guada Hernandez\": 100,\n",
+        "    \"Laura Baron\": 65\n",
+        "}\n",
+        "\n",
+        "for reg in registros:\n",
+        "  print(reg)\n",
+        "\n",
+        "while True:\n",
+        "    mostrar_menu()\n",
+        "    opcion = input(\"Elige una opción: \")\n",
+        "\n",
+        "    if opcion == \"1\":\n",
+        "        nombre = input(\"Ingrese el nombre del estudiante: \").strip()\n",
+        "        if nombre in registros:\n",
+        "            print(\"El estudiante ya está registrado.\")\n",
+        "        else:\n",
+        "            try:\n",
+        "                calificacion = float(input(\"Ingrese la calificación: \"))\n",
+        "                registros[nombre] = calificacion\n",
+        "                print(f\" Registro agregado: {nombre} - {calificacion}\")\n",
+        "            except ValueError:\n",
+        "                print(\" La calificación debe ser un número.\")\n",
+        "\n",
+        "    elif opcion == \"2\":\n",
+        "        if registros:\n",
+        "            print(\"\\n Lista de calificaciones:\")\n",
+        "            for nombre, calificacion in registros.items():\n",
+        "                print(f\"- {nombre}: {calificacion}\")\n",
+        "        else:\n",
+        "            print(\" No hay registros disponibles.\")\n",
+        "\n",
+        "    elif opcion == \"3\":\n",
+        "        nombre = input(\"Ingrese el nombre del estudiante a consultar: \").strip()\n",
+        "        if nombre in registros:\n",
+        "            print(f\" {nombre} tiene una calificación de {registros[nombre]}\")\n",
+        "        else:\n",
+        "            print(\" Estudiante no encontrado.\")\n",
+        "\n",
+        "    elif opcion == \"4\":\n",
+        "        nombre = input(\"Ingrese el nombre del estudiante que quiere actualizar: \").strip()\n",
+        "        if nombre in registros:\n",
+        "            try:\n",
+        "                nueva_calificacion = float(input(f\"Ingrese la nueva calificación para {nombre}: \"))\n",
+        "                registros[nombre] = nueva_calificacion\n",
+        "                print(f\" Calificación actualizada: {nombre} - {nueva_calificacion}\")\n",
+        "            except ValueError:\n",
+        "                print(\" La calificación debe ser un número.\")\n",
+        "        else:\n",
+        "            print(\"Estudiante no encontrado.\")\n",
+        "\n",
+        "    elif opcion == \"5\":\n",
+        "        nombre = input(\"Ingrese el nombre del estudiante que quiere eliminar: \").strip()\n",
+        "        if nombre in registros:\n",
+        "            del registros[nombre]\n",
+        "            print(f\"{nombre} ha sido eliminado del registro.\")\n",
+        "        else:\n",
+        "            print(\" Estudiante no encontrado.\")\n",
+        "\n",
+        "    elif opcion == \"6\":\n",
+        "        print(\" Saliendo del programa. ¡Hasta luego!\")\n",
+        "        break\n",
+        "\n",
+        "    else:\n",
+        "        print(\" Opción no válida. Intenta de nuevo.\")\n"
+      ],
+      "metadata": {
+        "id": "-tAST--Kcs5m",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "a0e1b88f-211c-45df-ad40-3a238557f521"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Juan Pérez\n",
+            "María Gómez\n",
+            "Carlos Ruiz\n",
+            "Ana López\n",
+            "\n",
+            " Menú:\n",
+            "1. Agregar nuevo Estudiante\n",
+            "2. Listar todos los Estudiantes\n",
+            "3. Consultar calificación de un estudiante\n",
+            "4. Actualizar calificación de un estudiante\n",
+            "5. Eliminar un estudiante del registro\n",
+            "6. Salir\n",
+            "Elige una opción: 2\n",
+            "\n",
+            " Lista de calificaciones:\n",
+            "- Juan Pérez: 85\n",
+            "- María Gómez: 92\n",
+            "- Carlos Ruiz: 78\n",
+            "- Ana López: 88\n",
+            "\n",
+            " Menú:\n",
+            "1. Agregar nuevo Estudiante\n",
+            "2. Listar todos los Estudiantes\n",
+            "3. Consultar calificación de un estudiante\n",
+            "4. Actualizar calificación de un estudiante\n",
+            "5. Eliminar un estudiante del registro\n",
+            "6. Salir\n",
+            "Elige una opción: 6\n",
+            " Saliendo del programa. ¡Hasta luego!\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Calculadora de Estadísticas de Números Descripción: Desarrolla una aplicación que trabaje con una colección de números predefinidos. El sistema debe ofrecer al usuario un menú interactivo con opciones para calcular el promedio, identificar el valor máximo y mínimo, o eliminar un número. Tras cada operación, se mostrará tanto el resultado como el estado actual de la colección."
+      ],
+      "metadata": {
+        "id": "EMnaMBUJbjfG"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "lista_de_numeros = [15, 20, 25, 30, 35]\n",
+        "print(lista_de_numeros)\n",
+        "while True:\n",
+        "    print(\"\\n1. Promedio\")\n",
+        "    print(\"2. Máximo\")\n",
+        "    print(\"3. Mínimo\")\n",
+        "    print(\"4. Eliminar un número\")\n",
+        "    print(\"5. Ver lista\")\n",
+        "    print(\"6. Salir\")\n",
+        "\n",
+        "    opcion = input(\"Elige una opción: \")\n",
+        "\n",
+        "    if opcion == \"1\":\n",
+        "        if lista_de_numeros:\n",
+        "            promedio = sum(lista_de_numeros) / len(lista_de_numeros)\n",
+        "            print(\"Promedio:\", promedio)\n",
+        "        else:\n",
+        "            print(\"La lista está vacía. No se puede calcular el promedio.\")\n",
+        "\n",
+        "    elif opcion == \"2\":\n",
+        "        if lista_de_numeros:\n",
+        "            print(\"Máximo:\", max(lista_de_numeros))\n",
+        "        else:\n",
+        "            print(\"La lista está vacía.\")\n",
+        "\n",
+        "    elif opcion == \"3\":\n",
+        "        if lista_de_numeros:\n",
+        "            print(\"Mínimo:\", min(lista_de_numeros))\n",
+        "        else:\n",
+        "            print(\"La lista está vacía.\")\n",
+        "\n",
+        "    elif opcion == \"4\":\n",
+        "        if lista_de_numeros:\n",
+        "            valor = int(input(\"Número a eliminar: \"))\n",
+        "            if valor in lista_de_numeros:\n",
+        "                lista_de_numeros.remove(valor)\n",
+        "                print(\"Número eliminado.\")\n",
+        "            else:\n",
+        "                print(\"Ese número no está en la lista.\")\n",
+        "        else:\n",
+        "            print(\"La lista está vacía. No hay nada que eliminar.\")\n",
+        "\n",
+        "    elif opcion == \"5\":\n",
+        "        print(\"Lista actual:\", lista_de_numeros)\n",
+        "\n",
+        "    elif opcion == \"6\":\n",
+        "        print(\"Adiós\")\n",
+        "        break\n",
+        "\n",
+        "    else:\n",
+        "        print(\"Opción no válida.\")\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "zPc4t0hg4Yu-",
+        "outputId": "0c427488-b354-40b0-b850-94b492ca0c1e"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[15, 20, 25, 30, 35]\n",
+            "\n",
+            "1. Promedio\n",
+            "2. Máximo\n",
+            "3. Mínimo\n",
+            "4. Eliminar un número\n",
+            "5. Ver lista\n",
+            "6. Salir\n",
+            "Elige una opción: 6\n",
+            "Adiós\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "QV3RAN4X1LLP"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
